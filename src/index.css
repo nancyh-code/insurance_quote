@@ -2,8 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @layer base {
+  html {
+    font-family: Proxima Nova, system-ui, sans-serif;
+
+  }
+} */
+
 @layer base {
   html {
     font-family: Proxima Nova, system-ui, sans-serif;
+    background-color: #105652;
+  }
+  h1 {
+    @apply text-4xl;
+  }
+  h2 {
+    @apply text-2xl;
   }
 }
