@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { BRANDS, YEARS, PLANS } from "../constants";
+import QuoteContext from "../context/QuoteProvider";
 
 const Form = () => {
+  const {} = useContext(QuoteContext);
   return (
     <>
       <form>
