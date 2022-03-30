@@ -16,6 +16,7 @@ const QuoteProvider = ({ children }) => {
   });
   const [error, setError] = useState("");
   const [resultOfTheQuote, setResultofTheQuote] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChangeData = (e) => {
     setData({
@@ -43,12 +44,25 @@ const QuoteProvider = ({ children }) => {
 
     result = formattingCurrency(result);
 
-    setResultofTheQuote(result);
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setResultofTheQuote(result);
+      setIsLoading(false);
+    }, 3000);
   };
 
   return (
     <QuoteContext.Provider
-      value={{ data, handleChangeData, error, setError, quoteInsurance }}
+      value={{
+        data,
+        handleChangeData,
+        error,
+        setError,
+        quoteInsurance,
+        resultOfTheQuote,
+        isLoading,
+      }}
     >
       {children}
     </QuoteContext.Provider>
