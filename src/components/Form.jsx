@@ -1,11 +1,23 @@
 import { BRANDS, YEARS, PLANS } from "../constants";
 import useQuote from "../hooks/useQuote";
+import Error from "./Error";
 
 const Form = () => {
-  const { data, handleChangeData } = useQuote();
+  const { data, handleChangeData, error, setError } = useQuote();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (Object.values(data).includes("")) {
+      setError("All fields are required");
+      return;
+    }
+    setError("");
+    //TODO: Cotizar
+  };
   return (
     <>
-      <form>
+      {error && <Error />}
+      <form onSubmit={handleSubmit}>
         <div className="my-5">
           <label className="block mb-2 font-bold text-red-700 uppercase">
             Brand
