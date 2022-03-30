@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import { BRANDS, YEARS, PLANS } from "../constants";
-import QuoteContext from "../context/QuoteProvider";
+import useQuote from "../hooks/useQuote";
 
 const Form = () => {
-  const {} = useContext(QuoteContext);
+  const { data, handleChangeData } = useQuote();
   return (
     <>
       <form>
@@ -14,6 +13,8 @@ const Form = () => {
           <select
             name="brand"
             className="w-full p-3 bg-amber-50 border-red-200"
+            onChange={(e) => handleChangeData(e)}
+            value={data.brand}
           >
             <option value="">--Select Brand--</option>
             {BRANDS.map((brand) => (
@@ -27,7 +28,12 @@ const Form = () => {
           <label className="block mb-2 font-bold text-red-700 uppercase">
             Year
           </label>
-          <select name="year" className="w-full p-3 bg-amber-50 border-red-200">
+          <select
+            name="year"
+            className="w-full p-3 bg-amber-50 border-red-200"
+            onChange={(e) => handleChangeData(e)}
+            value={data.year}
+          >
             <option value="">--Select Year--</option>
             {YEARS.map((year) => (
               <option key={year} value={year}>
@@ -44,7 +50,12 @@ const Form = () => {
             {PLANS.map((plan) => (
               <div className="flex gap-5 items-center" key={plan.id}>
                 <label>{plan.name}</label>
-                <input type="radio" name="plan" value={plan.id} />
+                <input
+                  type="radio"
+                  name="plan"
+                  value={plan.id}
+                  onChange={(e) => handleChangeData(e)}
+                />
               </div>
             ))}
           </div>
