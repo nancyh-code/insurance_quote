@@ -3,7 +3,8 @@ import useQuote from "../hooks/useQuote";
 import Error from "./Error";
 
 const Form = () => {
-  const { data, handleChangeData, error, setError } = useQuote();
+  const { data, handleChangeData, error, setError, quoteInsurance } =
+    useQuote();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,7 +13,7 @@ const Form = () => {
       return;
     }
     setError("");
-    //TODO: Cotizar
+    quoteInsurance();
   };
   return (
     <>
