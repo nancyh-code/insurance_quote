@@ -11,8 +11,10 @@ const Result = () => {
   //Para mejorar el rendimiento en la carga de un componente se usa useCallaback, es como un useEffect con una dependencia.
   //También se usa useRef para el rendimiento
 
-  const [brandName] = useCallback(
-    BRANDS.filter((br) => br.id === Number(brand)),
+  //UseMemo también es otra optimización de rendimiento se recomienda para componenes que hacen una aplicación muy lenta
+
+  const [brandName] = useMemo(
+    () => BRANDS.filter((br) => br.id === Number(brand)),
     [resultOfTheQuote]
   );
   const [planName] = useCallback(
