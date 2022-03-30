@@ -1,13 +1,24 @@
+import { useCallback, useMemo, useRef } from "react";
 import useQuote from "../hooks/useQuote";
 import { BRANDS, PLANS } from "../constants";
 
 const Result = () => {
   const { resultOfTheQuote, data } = useQuote();
   const { brand, plan, year } = data;
+  const yearRef = useRef(year);
 
-  const [brandName] = BRANDS.filter((br) => br.id === Number(brand));
+  // const [brandName] = BRANDS.filter((br) => br.id === Number(brand));
+  //Para mejorar el rendimiento en la carga de un componente se usa useCallaback, es como un useEffect con una dependencia.
+  //También se usa useRef para el rendimiento
 
-  const [planName] = PLANS.filter((pl) => pl.id === Number(plan));
+  const [brandName] = useCallback(
+    BRANDS.filter((br) => br.id === Number(brand)),
+    [resultOfTheQuote]
+  );
+  const [planName] = useCallback(
+    PLANS.filter((pl) => pl.id === Number(plan)),
+    [resultOfTheQuote]
+  );
 
   if (resultOfTheQuote === 0) return null;
   return (
@@ -23,7 +34,8 @@ const Result = () => {
       </p>
       <p className="py-1">
         <span className="font-bold">Year Model: </span>
-        {data.year}
+        {/* {data.year} */}
+        {yearRef.current}
       </p>
       <p className="py-1 text-xl">
         <span className="font-bold">Quote Result: </span>
