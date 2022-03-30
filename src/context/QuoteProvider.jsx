@@ -49,7 +49,7 @@ const QuoteProvider = ({ children }) => {
     setTimeout(() => {
       setResultofTheQuote(result);
       setIsLoading(false);
-    }, 3000);
+    }, 2500);
   };
 
   return (
